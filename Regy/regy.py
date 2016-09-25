@@ -5,9 +5,10 @@ from pprint import pprint;
 from os import path;
 
 #TODO: Get moodle
+passs = str(input());
 payload = {
 	"username": "16bce1026",
-	"password": "password(M00DLE);"
+	"password": passs
 }
 url = 	"http://moodlecc.vit.ac.in/login/index.php";
 input_ = ""
@@ -56,6 +57,7 @@ def repeat():
 		time.sleep(300);
 		i+=1;
 #MAIN:
+
 while input_ != "exit":
 	input_ = str(input(">> "))
 	input_ = input_.lower();
