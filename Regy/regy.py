@@ -8,7 +8,7 @@ from os import path;
 passs = str(input());
 payload = {
 	"username": "16bce1026",
-	"password": passs
+	"password": "password(M00DLE);"
 }
 url = 	"http://moodlecc.vit.ac.in/login/index.php";
 input_ = ""
