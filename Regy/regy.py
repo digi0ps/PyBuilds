@@ -3,9 +3,9 @@ import requests, re, json, time;
 from bs4 import BeautifulSoup;
 from pprint import pprint;
 from os import path;
+from datetime import datetime
 
 #TODO: Get moodle
-passs = str(input());
 payload = {
 	"username": "16bce1026",
 	"password": "password(M00DLE);"
@@ -37,20 +37,66 @@ def update():
 	with open(r'data\data.json', 'w') as file:
 		database = json.dump(database, file, sort_keys = True, indent = 4);
 		print("\tDATABASE UPDATED.\n\tENTRIES UPDATED: %d\n\tTOTAL ENTRIES: %d" %(tempcount, total));
-
+#TODO: 
 def search():
 	with open(r'data\data.json', 'r') as file:
 		database = json.load(file);
-		regno = str(input("Enter the registration number: "));
-		regno = regno.upper();
-		if regno in database.keys():
-			print(database[regno]);
+		print("1. Search by RegNo\n2. Search by Year\n3. Search by Dept\n4. Search by Name\n");
+		c = int(input("Enter choice: ")); #choice variable
+		if c==1:
+			print("Enter registration number: ");
+			ureg = str(input());
+			flag = 0;
+			for reg in database.keys():
+				if ureg.upper()==reg:
+					flag = 1;
+					print("FOUND:", database[reg]);
+					break;
+		elif c==2:
+			print("Enter the last two digits of the year: ");
+			uyear = str(input()); 
+			flag = 0;
+			total = 0;
+			for reg in database.keys():
+				if uyear==reg[0:2]:
+					flag = 1;
+					print(database[reg],"-",reg);
+					total+=1;
+			print("\nTotal Entries:", str(total));
+		elif c==3:
+			print("Enter the department: ");
+			udept = str(input()); 
+			flag = 0;
+			total = 0;
+			for reg in database.keys():
+				if udept.upper()==reg[2:5]:
+					flag = 1;
+					print(database[reg],"-",reg);
+					total+=1;
+			print("\nTotal Entries:", str(total));
+		elif c==4:
+			print("Enter the name: ");
+			uname = str(input()); 
+			flag = 0;
+			total = 0;
+			for reg, name in database.items():
+				if uname.upper() in name.upper():
+					flag = 1;
+					print(name,"-",reg);
+					total+=1;
+			print("\nTotal Entries:", str(total));
 		else:
-			print("Registration number not found.");
+			print("Invalid input");
+			return;
+		if not flag:
+			print("Entry not found. ");
+		return;
 
 def repeat():
 	i = 1;
-	while i<25:
+	while i:
+		n = datetime.now();
+		print("\n\nTime:", str(n.hour)+":"+str(n.minute));
 		print("Update",i);
 		update();
 		print("Program snoozing")
