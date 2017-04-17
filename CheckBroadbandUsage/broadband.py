@@ -5,6 +5,13 @@
 # Language: Python
 # Requiremnts: requests, bs4, pync
 
+"""
+TODO:
+-[ ] Run script at startup using either crontab or launchctl
+-[ ] Check wifi ssid before running the script
+-[ ] Move to a class based model
+"""
+
 # Imports
 try:
 	import requests
@@ -26,7 +33,7 @@ def fetch_website_source():
 		req.raise_for_status()
 		return req.text
 	except:
-		print("ERROR")
+		print("ERROR: Website doesn't exist.")
 
 
 def parse_website(source):
