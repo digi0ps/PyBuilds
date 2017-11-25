@@ -11,7 +11,7 @@ user = str(input("Username: "));
 pwd = str(input("Password: "));
 target = str(input("Target username: "));
 chrome = webdriver.Chrome();
-chrome.get("https://www.facebook.com");
+chrome.get("https://www.messenger.com");
 chrome.find_element_by_id("email").send_keys(user);
 chrome.find_element_by_id("pass").send_keys(pwd);
 time.sleep(1);
